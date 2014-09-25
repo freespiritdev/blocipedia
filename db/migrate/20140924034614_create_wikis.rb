@@ -1,6 +1,6 @@
-class CreatePosts < ActiveRecord::Migration
-  def change
-    create_table :posts do |t|
+class CreateWikis < ActiveRecord::Migration
+ def change
+    create_table :wiki do |t|
       t.string :title
       t.boolean :public, default: true
       t.text :body
