@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   get 'wikis/new'
 
   get 'index/edit'
 
-  resources :wikis
+  resources :wikis, :users
 
   devise_for :users
   
