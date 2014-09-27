@@ -1,0 +1,12 @@
+<h1>Edit Page</h1>
+<div>
+  <%= form_for [@wiki, @page] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+
+    <%= f.submit "Save" %>
+  <% end %>
+</div>
