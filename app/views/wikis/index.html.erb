@@ -1,5 +1,21 @@
-<h1>Here I am!</h1>
+<h1>Wikis</h1>
 
-  
-
-      
+<div class="row">
+  <div class="col-md-8">
+    <% @wikis.each do |wiki| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to wiki.name, wiki %>
+          </h4>
+          <small>
+            <%= wiki.description %>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    
+  </div>
+</div><h1>Here I am!</h1>

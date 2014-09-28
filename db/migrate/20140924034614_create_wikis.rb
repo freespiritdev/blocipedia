@@ -1,9 +1,9 @@
 class CreateWikis < ActiveRecord::Migration
  def change
-    create_table :wiki do |t|
-      t.string :title
+    create_table :wikis do |t|
+      t.string :name
       t.boolean :public, default: true
-      t.text :body
+      t.integer :user_id
 
       t.timestamps
     end
