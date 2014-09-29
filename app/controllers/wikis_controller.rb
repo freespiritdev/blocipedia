@@ -6,7 +6,6 @@ class WikisController < ApplicationController
   def new
     @wiki = Wiki.new
     @wiki = current_user.wikis.build(params[:wiki])
-    authorize @wikis
   end
 
   def edit
@@ -19,14 +18,11 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new(params[:wiki])
-    authorize @wikis
-    @wiki.user_id = current_user.user_id
+    @wiki = current_user.wikis.build(params[:wiki])
   end
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wikis
     @wiki.update_attributes(params[:wiki])  
   end
 end

@@ -27,7 +27,8 @@ require 'faker'
    role:     'admin'
  )
  admin.skip_confirmation!
- admin.save!
+ admin.save
+ u.update_attribute(:role, 'admin')
 
 puts "Seed finished"
 puts "#{User.count} users created"
