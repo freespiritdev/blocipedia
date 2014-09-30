@@ -1,4 +1,4 @@
-<h1>Wikis</h1>
+<h1>Something Wiki Here!</h1>
 
 <div class="row">
   <div class="col-md-8">
@@ -8,14 +8,12 @@
           <h4 class="media-heading">
             <%= link_to wiki.name, wiki %>
           </h4>
-          <small>
-            <%= wiki.description %>
-          </small>
+        
         </div>
       </div>
     <% end %>
   </div>
   <div class="col-md-4">
-    
+    <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
   </div>
-</div><h1>Here I am!</h1>
+</div>

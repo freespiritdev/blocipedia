@@ -7,22 +7,5 @@
     
     </ul>
   </div>
-  <div class="col-md-8">
-    <%= form_for @wiki do |f| %>
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control', placeholder: "Enter wiki name" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :wiki %>
-        <%= f.text_area :name, cols: 116, rows: 8 %>
-      </div>
-      <div class="form-group">
-        <%= f.label :public, class: 'checkbox' do %>
-          <%= f.check_box :public %> Public wiki
-        <% end %>
-      </div>
-      <%= f.submit "Save", class: 'btn btn-success' %>
-    <% end %>
-  </div>
+    <%= render partial: 'form' %> 
 </div>

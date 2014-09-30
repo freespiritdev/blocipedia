@@ -33,4 +33,9 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     end
   end
+  private
+
+  def page_params
+  params.require(:page).permit(:title, :body)
+  end
 end

@@ -1,6 +1,5 @@
 require 'faker'
 
-
 # Create Wikis
  15.times do
    Wiki.create!(
