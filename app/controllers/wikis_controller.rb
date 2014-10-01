@@ -13,7 +13,8 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki = Wiki.find(params[:id])
+    @wiki = current_user.wikis.find(params[:id])
+    #@wiki = Wiki.find(params[:id])
 
   end
 
@@ -32,6 +33,20 @@ class WikisController < ApplicationController
     end
     render :edit
   end
+
+  def destroy
+    @wiki = Wiki.find(params[:id])
+    name = @wiki.name
+
+     if @wiki.destroy
+       flash[:notice] = "\"#{name}\" was deleted successfully."
+       redirect_to wikis_path
+     else
+       flash[:error] = "There was an error deleting the wiki."
+       render :show
+     end
+   end
+
 
   private
 

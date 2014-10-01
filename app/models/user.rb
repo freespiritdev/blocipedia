@@ -4,4 +4,9 @@ class User < ActiveRecord::Base
 
   has_many :wikis
   
+
+
+  def payment
+    customer = Stripe::Customer.create(:card => token,:description => "avyishi@yahoo.com")
+  end
 end
