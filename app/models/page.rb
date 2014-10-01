@@ -1,5 +1,5 @@
 class Page < ActiveRecord::Base
-
+    has many :pages
     belongs_to :wiki
     belongs_to :user
 
