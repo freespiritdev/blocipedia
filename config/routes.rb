@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :wikis do
   resources :users, :pages, except: [:index]
     resources :pages, only: [:create, :destroy]
+    resources : charges 
   end
 
   
