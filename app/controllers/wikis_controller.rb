@@ -14,14 +14,17 @@ class WikisController < ApplicationController
 
   def show
     @wiki = current_user.wikis.find(params[:id])
-    #@wiki = Wiki.find(params[:id])
+    @wiki = Wiki.find(params[:id])
 
   end
 
   def create
     @wiki = current_user.wikis.build(wiki_params)
     if @wiki.save
+      flash[:notice] = "Awesome, wiki was created successfully!"
       return redirect_to @wiki
+    else
+      flash[:error] = "There was an error creaeting the wiki. Please try again"
     end
     render :new
   end
@@ -51,7 +54,7 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:name, :public)
+    params.require(:wiki).permit(:name, :private)
   end
 
 

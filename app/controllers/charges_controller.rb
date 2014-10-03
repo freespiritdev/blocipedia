@@ -18,6 +18,11 @@ def create
     :currency    => 'usd'
   )
 
+  current_user.update_attribute :role, "premium"
+
+    redirect_to wikis_path, notice: 
+      "Thank you for subscribing! You're ready to create wikis."
+
 rescue Stripe::CardError => e
   flash[:error] = e.message
   redirect_to charges_path
