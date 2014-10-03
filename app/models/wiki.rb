@@ -3,10 +3,21 @@ class Wiki < ActiveRecord::Base
     has_many :collaborations
     has_many :users
 
-    #extend FriendlyId
-    #friendly_id :name, use: [:slugged, :history]
+default_scope { order('created_at DESC') }
 
-    #def create_new_friendly_id?
-    #new_record?
-    #end
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :history]
+
+  def should_generate_new_friendly_id?
+    new_record?
+  end
+
+  def is_collaborator?(user)
+    users.include?(user)
+  end
+
+  def collaborator_for(user)
+    collaborators.where(user_id: user.id).first
+  end
+
 end

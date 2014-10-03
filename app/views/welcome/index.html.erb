@@ -2,19 +2,23 @@
 <div class="jumbotron">
   <h1 align= "center">Blocipedia</h1>
   <p align= "center">Blocipedia: Social, Markdown Wikis</p>
-  <p align= "center">Create and share Markdown Wikis
-      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+  <p align= "center">Create and share Markdown Wikis</p>
+  <p align= "center">
+      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %>
+      <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> 
   </p>
 </div>
+
 <div class="row" >
   <div class="col-md-4">
     <h2 align = "center">Create as many public wikis as you want!</h2>
     <p align = "center"><%= link_to "Free Plan", new_user_registration_path, class: 'btn btn-primary' %></p>
   </div>
-  <div>            </div>
+
   <div class="col-md-4">
-    <h2 align = "center">Create private wikis!</h2>
-    <p align = "center"><%= link_to "Premium Plan", new_user_registration_path(premium: true), class: 'btn btn-primary' %></p>
+    <h2 align = "center">Create private wikis for $9.99!</h2>
+    <p align = "center"><%= link_to "Premium Upgrade", new_charge_path(premium: true), class: 'btn btn-primary' %></p>
+    
   </div>
 </div>
 
