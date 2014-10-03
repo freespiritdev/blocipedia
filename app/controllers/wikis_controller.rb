@@ -25,7 +25,7 @@ class WikisController < ApplicationController
       return redirect_to @wiki
     else
       flash[:error] = "There was an error creaeting the wiki. Please try again"
-    end
+  end
     render :new
   end
 
