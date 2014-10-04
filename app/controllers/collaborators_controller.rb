@@ -1,7 +1,7 @@
 class CollaboratorsController < ApplicationController
 
    def index
-    @users = User.where("id is not ?", current_user.id)
+    @users = User.where("id?", current_user.id)
   end
 
 

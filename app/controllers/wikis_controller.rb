@@ -5,16 +5,21 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
-    @wiki = current_user.wikis.build(params[:wiki])
+    #@wiki = current_user.wikis.build(params[:wiki])
   end
 
   def edit
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
+    #@wiki = Wiki.find(params[:id])
   end
 
   def show
-    @wiki = current_user.wikis.find(params[:id])
-    @wiki = Wiki.find(params[:id])
+   #@wiki = current_user.wikis.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
+    #@wiki = Wiki.find(params[:id])
+      #if request.path != wiki_path(@wiki)
+        redirect_to @wiki, status: :moved_permanently
+      #end
 
   end
 
@@ -22,23 +27,29 @@ class WikisController < ApplicationController
     @wiki = current_user.wikis.build(wiki_params)
     if @wiki.save
       flash[:notice] = "Awesome, wiki was created successfully!"
-      return redirect_to @wiki
+      redirect_to @wiki
     else
       flash[:error] = "There was an error creaeting the wiki. Please try again"
   end
     render :new
   end
 
+
   def update
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
+    #@wiki = Wiki.find(params[:id])
     if @wiki.update_attributes(wiki_params)
-      return redirect_to @wiki
+      flash[:notice] = "Wiki was updated."
+      redirect_to @wiki
+      else
+       flash[:error] = "There was an error saving the wiki. Please try again."
+      render :edit
     end
-    render :edit
-  end
+ end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
+    #@wiki = Wiki.find(params[:id])
     name = @wiki.name
 
      if @wiki.destroy
