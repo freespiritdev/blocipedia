@@ -18,7 +18,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.friendly.find(params[:id])
     #@wiki = Wiki.find(params[:id])
       #if request.path != wiki_path(@wiki)
-        redirect_to @wiki, status: :moved_permanently
+        # redirect_to @wiki, status: :moved_permanently
       #end
 
   end
@@ -30,8 +30,8 @@ class WikisController < ApplicationController
       redirect_to @wiki
     else
       flash[:error] = "There was an error creaeting the wiki. Please try again"
-  end
-    render :new
+      render :new
+    end
   end
 
 
@@ -45,7 +45,7 @@ class WikisController < ApplicationController
        flash[:error] = "There was an error saving the wiki. Please try again."
       render :edit
     end
- end
+  end
 
   def destroy
     @wiki = Wiki.friendly.find(params[:id])
