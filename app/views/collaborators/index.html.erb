@@ -1,9 +1,5 @@
 <h1><%= @wiki.name %> collaborators</h1>
-
- <td><%= user.name %></td>
-    <td><%= user.email %></td>
-
-<%= link_to 'New Collaborator', new_wiki_collaborators_path %>
+<%= link_to 'New Collaborator', new_wiki_collaborator_path %>
 <%= link_to 'Back', wikis_path(@wiki) %>
 
 
@@ -14,25 +10,5 @@
 <p>You must first enroll as a premium user before you can add or view potential collaborators!</p>
 </br>
 <% @users.each do |u| %>
-  <%= form_for [@wiki, @collaborator] do |f| %>
-    <div class="row">
-      <div class="span2">
-        <%= u.name %> <%= u.email %>
-      </div>
-      <div class="span2">
-        <%= f.hidden_field :user_id, :value => u.id %>
-      </div>
-      <div class="span3">
-        <% unless @wiki.collaborators.pluck("user_id").include? u.id %>
-        <%= f.submit "Add Collaborator" %>
-       <% end %>
-     </div>
-  <% end %>
-  <div class="span3">
-      <% if @wiki.collaborators.pluck("user_id").include? u.id %>
-        <% c = Collaborator.where(:user_id => u.id, :wiki_id => @wiki.id).last %>
-        <%= button_to 'Delete collaborator', wiki_collaborator_path(@wiki, c), :method => 'delete', :confirm => 'Are you sure?', class: 'btn' %>
-      <% end %>
-    </div>
-  </div>
+<div> <%= u.name %><%= link_to 'Collaborate!', wiki_collaborators_path(user: u, wiki: @wiki), method: :post%></div>
 <% end %>

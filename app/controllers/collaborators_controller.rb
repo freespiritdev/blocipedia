@@ -1,26 +1,30 @@
 class CollaboratorsController < ApplicationController
+
   before_filter :find_wiki
 
   def new
     @wiki = Wiki.find(params[:wiki_id])
     @users = User.all
-    @users.delete(current_user) 
-    @collaborators = Collaborators.new
+    #@users.delete(current_user) 
+    #@collaborators = Collaborators.new
   end
 
   def index
     @collaborators = Collaborator.all
-  end
+    @users = User.all
+  end             
 
   def create
-    @wiki.collaborators.delete_all
-    @collaborators = []
-    params[:collaborators][:user_id].each do |user_id|
-      @collaborators << Collaborators.create(id: id, wiki_id: @wiki.id)
+    @wiki = Wiki.find(params[:wiki_id])
+    @collaborator = @wiki.collaborators.build(params[:collaborator])
+    
+    if @collaborator.save
+      flash[:notice] = "Successfully saved collaborator."
+    else
+      flash[:error] = "There was an error."
+    end
+    redirect_to action: :new
   end
-  redirect_to @wiki
-end
-
 
 
   private

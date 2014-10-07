@@ -1,6 +1,9 @@
 class WikisController < ApplicationController
+  authorize_resource class: false
   def index
      @wikis = Wiki.all
+     @wikis = current_user.wikis.paginate(page: params[:page], per_page: 10)
+
   end
 
   def new
@@ -29,14 +32,14 @@ class WikisController < ApplicationController
       flash[:notice] = "Awesome, wiki was created successfully!"
       redirect_to @wiki
     else
-      flash[:error] = "There was an error creaeting the wiki. Please try again"
+      flash[:error] = "There was an error creating the wiki. Please try again"
       render :new
     end
   end
 
 
   def update
-    @wiki = Wiki.friendly.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:user_id])
     #@wiki = Wiki.find(params[:id])
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was updated."
@@ -61,6 +64,13 @@ class WikisController < ApplicationController
      end
    end
 
+before_filter :check_for_cancel, :only => [:create, :update]
+
+def check_for_cancel
+  if params[:commit] == "cancel"
+    redirect_to wikis_path
+  end
+end
 
   private
 
