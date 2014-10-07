@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
      @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: 'Premium Plan',
-      amount: 6
+      amount: 9
     }
   end
 
@@ -34,4 +34,15 @@ rescue Stripe::CardError => e
   flash[:error] = e.message
   redirect_to charges_path
 end
+
+before_filter :require_login
+
+private
+
+  def require_login
+    unless current_user
+      redirect_to edit_user_registration_path
+    end
+  end
+
 end
