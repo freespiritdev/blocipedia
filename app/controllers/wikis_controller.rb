@@ -1,5 +1,5 @@
 class WikisController < ApplicationController
-  authorize_resource class: false
+  
   def index
      @wikis = Wiki.all
      @wikis = current_user.wikis.paginate(page: params[:page], per_page: 10)
@@ -39,7 +39,7 @@ class WikisController < ApplicationController
 
 
   def update
-    @wiki = Wiki.friendly.find(params[:user_id])
+    @wiki = Wiki.friendly.find(params[:id])
     #@wiki = Wiki.find(params[:id])
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was updated."
