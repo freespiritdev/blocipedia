@@ -4,11 +4,14 @@
 
 
 <h1 class="text-justify">Collaborators</h1>
-</br>
-<h5>Add collaborators to the Wiki (showing all current users)</h5>
-</br>
+
 <p>You must first enroll as a premium user before you can add or view potential collaborators!</p>
 </br>
 <% @users.each do |u| %>
-<div> <%= u.name %><%= link_to 'Collaborate!', wiki_collaborators_path(user: u, wiki: @wiki), method: :post%></div>
+  <div> 
+    <%= u.name %>
+      <%= link_to ' Collaborate!', wiki_collaborators_path(user: u, wiki: @wiki), method: :post%></div>
 <% end %>
+
+
+

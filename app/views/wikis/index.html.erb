@@ -2,24 +2,33 @@
 <p><%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %></p>
 <div class="row">
   <div class="col-md-8">
-    <% @wikis.each do |wiki| %>
-      <div class="media">
+
+  <table style = "width:100%">
+    <tr>
+      <td> <% @wikis.each do |wiki| %></td>
+    </tr>
+
+    <tr>
+      <td>
+        <div class="media">
         <div class="media-body">
-          <h4 class="media-heading">
+        <h4 class="media-heading">
             <%= link_to wiki.name, wiki_path(wiki) %>
-            
-          </h4>
+        </h4>
         <small>
-         created <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.name %>
-       </small>
+          created <%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.name %>
+        </small>
+       </td>
+    </tr>
+        
         </div>
       </div>
     <% end %>
+
+    </table>
     
   </div>
-  <div class="col-md-4">
-    
-  </div>
+ 
 </div>
 
 <%= will_paginate @wikis %>
