@@ -5,7 +5,8 @@ class CollaboratorsController < ApplicationController
   def new
     @wiki = Wiki.find(params[:wiki_id])
     @users = User.all
-    #@users.delete(current_user) 
+    @collaborators = Collaborator.all
+    @users.delete(current_user) 
     #@collaborators = Collaborators.new
   end
 
@@ -16,7 +17,7 @@ class CollaboratorsController < ApplicationController
 
   def create
     @wiki = Wiki.find(params[:wiki_id])
-    @collaborator = @wiki.collaborators.build(params[:collaborator])
+    @collaborator = @wiki.collaborators.build(collaborator_params)
     
     if @collaborator.save
       flash[:notice] = "Successfully saved collaborator."
@@ -28,6 +29,10 @@ class CollaboratorsController < ApplicationController
 
 
   private
+
+  def collaborator_params
+    params.require(:collaborator).permit(:wiki_id, :id)
+  end
 
   def find_wiki
     @wiki = Wiki.find(params[:wiki_id])

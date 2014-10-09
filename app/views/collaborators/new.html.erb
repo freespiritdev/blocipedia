@@ -1,2 +1,16 @@
-<h1>Collaborators#new</h1>
-<p>Find me in app/views/collaborators/new.html.erb</p>
+<h1>Add a Collaborator to your Wiki</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <% User.all.each do |user| %>
+    <br>
+    <%= form_for [@wiki, Collaborator.new] do |f| %>
+    <%= f.hidden_field :user_id, value: user.id %>
+    <%= f.submit user.name, class: 'btn btn-success'%>
+    <% end %>
+    
+    <% end %>
+    <br>
+    <%= link_to "Back to Wikis", wikis_path %>
+  </div>
+</div>

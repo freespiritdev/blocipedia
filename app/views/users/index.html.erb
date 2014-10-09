@@ -1,1 +1,18 @@
-<h2>Hi There!</h2
+<h2>Add and Remove collaborators</h2>
+
+ <% User.all.each do |user| %>
+ <%= form_for [@wiki, @collaborator] do |f| %>
+    <div class="row">
+      <div class="span2">
+  <%= user.name %>
+  <%= user.email%>
+ 
+<% yield %>
+ <%= button_to 'Delete collaborator', wiki_collaborator_path(@wiki), :method => 'delete', :confirm => 'Are you sure?', class: 'btn' %>
+        <% end %> 
+     
+    </div>
+  </div>
+<% end %>
+</br>
+<%=link_to "Back to Edit", :back %>
