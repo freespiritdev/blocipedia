@@ -1,17 +1,21 @@
-<h1><%= @wiki.name %> collaborators</h1>
-<%= link_to 'New Collaborator', new_wiki_collaborator_path %>
-<%= link_to 'Back', wikis_path(@wiki) %>
-
-
 <h1 class="text-justify">Collaborators</h1>
 
 <p>You must first enroll as a premium user before you can add or view potential collaborators!</p>
+
+<%= link_to 'New Collaborator', new_wiki_collaborator_path %>
 </br>
+<table class="table">
 <% @users.each do |u| %>
-  <div> 
-    <%= u.name %>
-      <%= link_to ' Collaborate!', wiki_collaborators_path(user: u, wiki: @wiki), method: :post%></div>
+  <tr>  
+    <td><%= u.name  %></td>
+    <td> <%= u.email %></td>
+    <td>
+      <%= link_to "Remove collaborator", method: :delete, class: "btn btn-danger" %>
+    </td>
+    <td>
+      <%= link_to "Add collaborator", method: :post, class: "btn btn-success" %>
+    </td>
 <% end %>
+</table>
 
-
-
+<%= link_to 'Back', wikis_path(@wiki) %>

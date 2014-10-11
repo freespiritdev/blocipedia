@@ -35,6 +35,6 @@ class CollaboratorsController < ApplicationController
   end
 
   def find_wiki
-    @wiki = Wiki.find(params[:wiki_id])
+   
   end
 end
