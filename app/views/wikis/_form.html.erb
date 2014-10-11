@@ -5,17 +5,11 @@
         <%= f.text_field :name, class: 'form-control', placeholder: "Enter wiki name" %>
       </div>
       <div class="form-group">
-      
         <%= f.label :public, class: 'checkbox' do %>
-          <%= f.check_box :public %> Public wiki
+        <%= f.check_box :public %> Public wiki
         <% end %>
-        
-
-
       </div>
-      <%= f.submit "Save", class: 'btn btn-success' %>
-       <%= link_to "Cancel", wikis_path, class: 'btn btn-warning' %>
+        <%= f.submit "Save", class: 'btn btn-success' %>
+        <%= link_to "Cancel", wikis_path, class: 'btn btn-warning' %>
     <% end %>
-
-  
-  </div>
+</div>
