@@ -29,8 +29,6 @@ class CollaboratorsController < ApplicationController
   end
 
 
-
-
   private
 
   def collaborator_params
