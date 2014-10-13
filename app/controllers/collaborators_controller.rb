@@ -16,7 +16,7 @@ class CollaboratorsController < ApplicationController
   end             
 
   def create
-    @wiki = Wiki.find(params[:wiki_id])
+    @wiki = Wiki.friendly.find(params[:wiki_id])
     @collaborator = @wiki.collaborators.build(collaborator_params)
     
     if @collaborator.save
@@ -24,7 +24,8 @@ class CollaboratorsController < ApplicationController
     else
       flash[:error] = "There was an error."
     end
-    redirect_to action: :new
+    redirect_to action: edit_wiki(@wiki)
+    #redirect_to action: edit_wiki_collaborator(@wiki)
   end
 
 
@@ -35,6 +36,6 @@ class CollaboratorsController < ApplicationController
   end
 
   def find_wiki
-   
+    @wiki = Wiki.friendly.find(params[:wiki_id])
   end
 end

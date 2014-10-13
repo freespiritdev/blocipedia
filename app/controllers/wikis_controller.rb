@@ -13,6 +13,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.friendly.find(params[:id])
+    @collaborator = Collaborator.new
     #@wiki = Wiki.find(params[:id])
   end
 
@@ -50,19 +51,7 @@ class WikisController < ApplicationController
     end
   end
 
-  def destroy
-    @wiki = Wiki.friendly.find(params[:id])
-    #@wiki = Wiki.find(params[:id])
-    name = @wiki.name
-
-     if @wiki.destroy
-       flash[:notice] = "\"#{name}\" was deleted successfully."
-       redirect_to wikis_path
-     else
-       flash[:error] = "There was an error deleting the wiki."
-       render :show
-     end
-   end
+  
 
 before_filter :check_for_cancel, :only => [:create, :update]
 
