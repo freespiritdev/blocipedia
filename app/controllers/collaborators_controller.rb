@@ -28,6 +28,16 @@ class CollaboratorsController < ApplicationController
     #redirect_to action: edit_wiki_collaborator(@wiki)
   end
 
+  def destroy
+    @collaborator = Collaborator.find(params[:id])
+    
+    if @collaborator.destroy
+      flash[:notice] = "\"#{name}\" was deleted successfully."
+    else
+      flash[:error] = "There was an error deleting the collaborator."
+    end
+    redirect_to wiki_collaborators_path(@wiki)
+  end
 
   private
 
