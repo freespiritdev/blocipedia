@@ -22,10 +22,7 @@
     <td><%= u.user.name  %></td>
     <td> <%= u.user.email %></td>
     <td>
-      <%= link_to "Remove collaborator", method: :delete, class: "btn btn-danger" %>
-    </td>
-    <td>
-      <%= link_to "Add collaborator", method: :post, class: "btn btn-success" %>
+    <%= link_to "Add/Remove Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-info' %>
     </td>
 <% end %>
 </table>

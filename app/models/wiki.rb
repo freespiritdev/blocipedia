@@ -3,7 +3,7 @@ class Wiki < ActiveRecord::Base
     has_many :collaborators
     has_many :users
 
-default_scope { order('created_at DESC') }
+  default_scope { order('created_at DESC') }
 
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]

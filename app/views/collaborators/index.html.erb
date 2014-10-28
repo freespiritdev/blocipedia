@@ -4,18 +4,5 @@
 
 <%= link_to 'New Collaborator', new_wiki_collaborator_path %>
 </br>
-<table class="table">
-<% @users.each do |u| %>
-  <tr>  
-    <td><%= u.name  %></td>
-    <td> <%= u.email %></td>
-    <td>
-      <%= link_to "Remove collaborator", method: :delete, class: "btn btn-danger" %>
-    </td>
-    <td>
-      <%= link_to "Add collaborator", method: :post, class: "btn btn-success" %>
-    </td>
-<% end %>
-</table>
 
 <%= link_to 'Back', wikis_path(@wiki) %>
