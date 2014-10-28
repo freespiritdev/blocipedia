@@ -2,7 +2,7 @@ class Collaborator < ActiveRecord::Base
  belongs_to :user
  belongs_to :wiki
   
-  attr_accessor :email
+  attr_accessor :email, :name
   before_create :lookup_user
 
   def lookup_user

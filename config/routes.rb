@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     resources :collaborators
   end
     
+  resources :collaborators
   resources :charges, :users
   
   get 'welcome/index'

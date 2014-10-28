@@ -3,34 +3,34 @@ class CollaboratorsController < ApplicationController
   before_filter :find_wiki
 
   def new
-    @wiki = Wiki.find(params[:wiki_id])
+    @wiki = Wiki.friendly.find(params[:wiki_id])
     @users = User.all
     @collaborators = Collaborator.all
-    @users.delete(current_user) 
     #@collaborators = Collaborators.new
   end
 
   def index
-    @collaborators = Collaborator.all
-    @users = User.all
+    find_wiki
   end             
 
   def create
     @wiki = Wiki.friendly.find(params[:wiki_id])
-    @collaborator = @wiki.collaborators.build(collaborator_params)
+    @user = User.find(params[:collaborator][:user_id])
+    #@collaborator = @wiki.collaborators.build(params[:collaborator])
+    @collaborator = @wiki.collaborators.build(collaborator_params.merge(user_id: @user.id))
     
     if @collaborator.save
       flash[:notice] = "Successfully saved collaborator."
     else
       flash[:error] = "There was an error."
     end
-    redirect_to action: edit_wiki(@wiki)
+    #render  :new
     #redirect_to action: edit_wiki_collaborator(@wiki)
+    redirect_to wiki_collaborators_path(@wiki)
   end
 
   def destroy
     @collaborator = Collaborator.find(params[:id])
-    
     if @collaborator.destroy
       flash[:notice] = "\"#{name}\" was deleted successfully."
     else
@@ -42,7 +42,7 @@ class CollaboratorsController < ApplicationController
   private
 
   def collaborator_params
-    params.require(:collaborator).permit(:wiki_id, :id)
+    params.require(:collaborator).permit(:user_id)
   end
 
   def find_wiki
