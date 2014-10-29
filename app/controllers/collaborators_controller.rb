@@ -49,5 +49,4 @@ class CollaboratorsController < ApplicationController
   def find_wiki
     @wiki = Wiki.friendly.find(params[:wiki_id])
   end
-  
 end

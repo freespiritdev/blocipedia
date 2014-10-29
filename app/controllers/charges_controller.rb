@@ -18,7 +18,12 @@ class ChargesController < ApplicationController
     card: params[:stripeToken]
   )
 
- 
+  charge = Stripe::Charge.create(
+    customer:  customer.id,
+    amount:    @amount,
+    description: 'Premium Customer',
+    currency: 'usd'
+  )
 
   current_user.update_attribute(:premium, true)
 
