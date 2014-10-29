@@ -16,14 +16,17 @@
 </div>
 
 <% @wiki.collaborators.all %>
+<table>
+  <% Collaborator.all.each do |user| %>
+    <tr>
+      <td>
+        <%= user.name %>
+      </td>
+      <td>
+        <%= user.email%>
+      </td>
 
-<% Collaborator.all.each do |user| %>
- <td>
-            <%= user.name %>
-          </td>
-          <td>
-            <%= user.email%>
-          </td>
-        </tr>
-        <% yield %>
-        <% end %> 
+    </tr>
+      <% yield %>
+  <% end %> 
+</table>
