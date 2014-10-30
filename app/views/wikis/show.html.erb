@@ -12,21 +12,21 @@
     <%= link_to "Remove Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-info' %>
 
     <%= link_to "Add Collaborators", new_wiki_collaborator_path(@wiki), class: 'btn btn-info' %>
+
+
+<table class='table'>
+  <% @wiki.collaborators.all.each do |collaborator| %>
+    <tr>
+      <td>
+        <%= collaborator.user.name %>
+      </td>
+      <td>
+        <%= collaborator.user.email %>
+      </td>
+    </tr>
+  <% end %> 
+</table>
+
      
 </div>
 
-<% @wiki.collaborators.all %>
-<table>
-  <% Collaborator.all.each do |user| %>
-    <tr>
-      <td>
-        <%= user.name %>
-      </td>
-      <td>
-        <%= user.email%>
-      </td>
-
-    </tr>
-      <% yield %>
-  <% end %> 
-</table>

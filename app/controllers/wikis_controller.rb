@@ -3,7 +3,6 @@ class WikisController < ApplicationController
   def index
      @wikis = Wiki.all
      @wikis = current_user.wikis.paginate(page: params[:page], per_page: 10)
-
   end
 
   def new
@@ -24,7 +23,6 @@ class WikisController < ApplicationController
       #if request.path != wiki_path(@wiki)
         # redirect_to @wiki, status: :moved_permanently
       #end
-
   end
 
   def create
@@ -33,7 +31,7 @@ class WikisController < ApplicationController
       flash[:notice] = "Awesome, wiki was created successfully!"
       redirect_to @wiki
     else
-      flash[:error] = "There was an error creating the wiki. Please try again"
+      flash[:error] = "Wiki isn't long enough. Please try again"
       render :new
     end
   end
@@ -65,7 +63,6 @@ def destroy
     end
   end
 
-  
 
 before_filter :check_for_cancel, :only => [:create, :update]
 

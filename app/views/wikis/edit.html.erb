@@ -6,23 +6,16 @@
     <%= render partial: 'form' %> 
   </div>
 </div>
-<div class="col-md-8">
-  <%= form_for [@wiki,@collaborator] do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.text_field :email, class: 'form-control', placeholder: "Add Collaborator" %>
-      </div>
-        <%= f.submit "Save", class: 'btn btn-success' %>
-        <%= link_to "Cancel", wikis_path, class: 'btn btn-warning' %>
-    <% end %>
-</div>
+<br>
+
 <table class="table">
 <% @wiki.collaborators.each do |u| %>
   <tr>  
     <td><%= u.user.name  %></td>
     <td> <%= u.user.email %></td>
     <td>
-    <%= link_to "Add/Remove Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-info' %>
+    <%= link_to "Remove Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-info' %>
     </td>
+    </tr>
 <% end %>
 </table>

@@ -6,7 +6,6 @@ class CollaboratorsController < ApplicationController
     @wiki = Wiki.friendly.find(params[:wiki_id])
     @users = User.all
     @collaborators = Collaborator.all
-    #@collaborators = Collaborators.new
   end
 
   def index
@@ -17,8 +16,7 @@ class CollaboratorsController < ApplicationController
   def create
     @wiki = Wiki.friendly.find(params[:wiki_id])
     @user = User.find(params[:collaborator][:user_id])
-    #@collaborator = @wiki.collaborators.build(params[:collaborator])
-    @collaborator = @wiki.collaborators.build(collaborator_params.merge(user_id: @user.id))
+    @collaborator = Collaborator.create!(wiki_id: @wiki.id, user_id: @user.id)
     
     if @collaborator.save
       flash[:notice] = "Successfully saved collaborator."
@@ -26,8 +24,6 @@ class CollaboratorsController < ApplicationController
       flash[:error] = "There was an error."
     end
     render  :new
-    #redirect_to action: edit_wiki_collaborator(@wiki)
-    #redirect_to wiki_collaborators_path(@wiki)
   end
 
   def destroy
