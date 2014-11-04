@@ -8,6 +8,8 @@ class Wiki < ActiveRecord::Base
 
   #Checks for blank wiki and anything less than 2 characters
     validates :name, :length => { :minimum => 2} # This works
+    #validates :user_id, :uniqueness => {:message => "Already added!"}
+ 
    
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]

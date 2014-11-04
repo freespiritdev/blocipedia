@@ -5,6 +5,6 @@ class Collaborator < ActiveRecord::Base
  #attr_accessor :email, :name #removing this causes an error with the edit wiki option
 
   #Stops from adding more collaborators to a wiki
-  validates :user_id, :uniqueness => {:message => "Already added!"}
+  #validates :user_id, :uniqueness => {:message => "Already added!"}
  
 end

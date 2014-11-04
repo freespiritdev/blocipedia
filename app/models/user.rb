@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
   def payment
     customer = Stripe::Customer.create(:card => token,:description => "avyishi@yahoo.com")
   end
+
+  def is_collaborator_on(wiki)
+    wiki.collaborators.find(self.id) && true rescue false
+  end
 end
+
