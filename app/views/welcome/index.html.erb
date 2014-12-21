@@ -4,8 +4,12 @@
   <p align= "center">Blocipedia: Social, Markdown Wikis</p>
   <p align= "center">Create and share Markdown Wikis</p>
   <p align= "center">
-      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %>
-      <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> 
+  <%- if user_signed_in? %>
+    <%= link_to "Sign Out", destroy_user_session_path, method: 'delete' %>
+  <% else %>
+    <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary :hover'  %>
+    <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %>
+  <% end %>
   </p>
 </div>
 
