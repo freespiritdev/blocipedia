@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html b>
+<html>
 <head>
   <title>Blocipedia</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -14,9 +14,6 @@
         <li><%= link_to "About Wikis", welcome_wikis_path %></li>
         <li><%= link_to "Wikis", wikis_path %></li>
         
-
-      
-
 <div class="pull-right user-info">
            <% if current_user %>
              Hey <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
